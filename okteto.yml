@@ -1,0 +1,66 @@
+build:
+  app:
+    context: app
+
+deploy:
+  - kubectl apply -f k8s.yaml
+  - echo "deploy done"
+
+dev:
+  app:
+    mode: hybrid 
+    # command: ["sh", "-c", "echo VARIABLE1=$VARIABLE1 && echo $COFFEE && npx -y live-server ."]
+    command: ["npx -y live-server ."]
+    # command: ["exit 1"]
+    # command: ["npx"]
+    # args: ["-y", "live-server", "."]
+    # args: ["$VARIABLE1"]
+    reverse:
+      - 8080:8080
+    workdir: ./app
+    environment:
+      VARIABLE1: value1
+    # envFiles:
+    #   - .env1
+    # labels:
+    #   custom.andrea.label/dev: "true"
+    # annotations:
+    #   andrea/test: "6-july-2023"
+    # timeout: 1s
+    metadata:
+      annotations:
+        andrea/test-2: "6-july-2023"
+      labels:
+        custom.andrea.label/dev: "true"
+    # name: app-2
+    # autocreate: true
+    # interface: 1.1.1.1
+    # context: dodododo
+    # namespace: test
+    # container: app
+    # args:
+    #   SOURCE_IMAGE: ${OKTETO_BUILD_BASE_IMAGE}    
+    # probes:
+    #   liveness: true
+    #   readiness: true
+    #   startup: true  
+    # remote: 3333    
+#    replicas: 20
+#    nodeSelector:
+#      disktype: ssd
+#    image: test
+    
+  
+  # app:
+  #   image: node:18
+  #   command: [bash]
+  #   sync:
+  #     - app:/usr/src/app
+  #   workdir: /usr/src/app
+  #   forward:
+  #     - 8080:8080
+  #   environment:
+  #     VARIABLE1: value1
+  #   envFiles:
+  #     - app/.env
+
