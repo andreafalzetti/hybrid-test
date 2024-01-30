@@ -1,49 +1,49 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app
+  name: hybridapp
 spec:
   selector:
     matchLabels:
-      app: app
+      app: hybridapp
   template:
     metadata:
       labels:
-        app: app
+        app: hybridapp
     spec:
       containers:
-      - image: okteto.dev/hybrid-test-app:okteto
-        name: app
+      - image: okteto.dev/hybrid-test-hybridapp:okteto
+        name: hybridapp
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: app
+  name: hybridapp
 spec:
   type: ClusterIP
   ports:
   - name: "app"
     port: 80
   selector:
-    app: app
+    app: hybridapp
 
 ---
 
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: app
+  name: hybridapp
   annotations:
-    dev.okteto.com/generate-host: app
+    dev.okteto.com/generate-host: hybridapp
 spec:
   rules:
     - http:
         paths:
           - backend:
               service:
-                name: app
+                name: hybridapp
                 port:
                   number: 80
             path: /

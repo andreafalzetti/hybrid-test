@@ -1,0 +1,12 @@
+build:
+  hybridapp:
+    context: hybridapp
+
+deploy:
+  - kubectl apply -f k8s.yaml
+  - echo "deploy done"
+
+dev:
+  hybridapp:
+    mode: hybrid
+    command: bash
