@@ -11,5 +11,5 @@ dev:
     mode: hybrid
     workdir: hybridapp
     #command: bash
-    #command: ["npm", "run", "dev"]
-    command: /Users/andrea/dev/okteto/experiments/sigterm-ignore/ignore-sigterm
+    command: ["npm", "run", "dev"]
+    #command: /Users/andrea/dev/okteto/experiments/sigterm-ignore/ignore-sigterm
