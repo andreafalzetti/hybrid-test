@@ -9,4 +9,5 @@ deploy:
 dev:
   hybridapp:
     mode: hybrid
-    command: bash
+    workdir: hybridapp
+    command: ["npm", "run", "dev"]
